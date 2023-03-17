@@ -1,0 +1,63 @@
+create database bdclinica;
+use bdClinica;
+
+/*criando a tabela Paciente*/
+
+create table tbPaciente(
+codPaciente int primary key auto_increment,
+nomePaciente varchar(60) not null,
+telPaciente varchar(9),
+celPaciente varchar(11)
+);
+/*criando a tabela especialidade*/
+
+Create table tbEspecialidade(
+codEspecialidade int primary key auto_increment,
+Especialidade varchar(20)
+);
+
+/*criando a tabela Médico*/
+
+create table tbMedico(
+codMedico int primary key auto_increment,
+nomeMedico varchar(80) not null,
+telMedico varchar(9),
+celMedico varchar(11),
+codEspecialidade int 
+);
+drop table tbMedico;
+/*criando a tabela Agendamento*/
+
+create table tbAgendamento(
+codAgendamento int primary key auto_increment,
+dataAgendamento date,
+horaAgendamento time,
+codPaciente int,
+codMedico int ,
+diagnosticoAgendamento varchar(80)
+);
+select * from tbMedico;
+drop table tbMedico;
+drop table tbAgendamento;
+select * from tbAgendamento;
+select * from tbEspecialidade;
+describe tbMedico;
+
+insert into tbEspecialidade(Especialidade)
+values("Cirurgiao geral");
+
+insert into tbMedico(nomeMedico,telMedico,celMedico)
+values("jose","119943567","983746");
+
+alter table tbMedico
+add
+foreign key codEspecialidade (codEspecialidade) references tbEspecialidade(codEspecialidade);
+  
+  alter table tbAgendamento
+add
+   foreign key codPaciente (codPaciente) references tbPaciente(codPaciente);
+  
+   alter table tbAgendamento
+add
+ foreign key codMedico (codMedico) references tbMedico(codMedico)
+  
